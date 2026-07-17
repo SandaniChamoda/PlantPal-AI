@@ -1,59 +1,76 @@
 import Navbar from "@/components/Navbar";
+import ChatMessage from "@/components/ChatMessage";
+import { Button } from "@/components/ui/button";
+
 
 export default function ChatPage() {
+
   return (
+
     <main>
+
       <Navbar />
 
-      <section className="flex min-h-screen flex-col items-center px-6 pt-20">
+
+      <section className="flex min-h-screen flex-col items-center px-6 pt-16">
+
 
         <h1 className="text-4xl font-bold">
           PlantPal AI Chat 🌿
         </h1>
 
-        <div className="mt-8 w-full max-w-2xl rounded-xl border p-6">
+
+        <div className="mt-8 flex w-full max-w-2xl flex-col rounded-xl border p-6">
+
 
           <div className="space-y-4">
 
-            <div className="rounded-lg bg-gray-100 p-4">
-              Hello 👋  
-              How can I help your plants today?
-            </div>
+
+            <ChatMessage
+              sender="ai"
+              message="Hello 👋 How can I help your plants today?"
+            />
 
 
-            <div className="rounded-lg bg-green-100 p-4">
-              User:
-              <br />
-              Why are my leaves turning yellow?
-            </div>
+            <ChatMessage
+              sender="user"
+              message="Why are my plant leaves turning yellow?"
+            />
 
 
-            <div className="rounded-lg bg-gray-100 p-4">
-              AI:
-              <br />
-              Yellow leaves may happen due to watering problems,
-              sunlight issues, or nutrient deficiency.
-            </div>
+            <ChatMessage
+              sender="ai"
+              message="Yellow leaves can happen because of watering issues, sunlight problems, or nutrient deficiency."
+            />
+
 
           </div>
 
 
           <div className="mt-6 flex gap-3">
 
+
             <input
               placeholder="Ask about your plant..."
               className="flex-1 rounded-lg border p-3"
             />
 
-            <button className="rounded-lg bg-green-600 px-6 text-white">
+
+            <Button>
               Send
-            </button>
+            </Button>
+
 
           </div>
 
+
         </div>
 
+
       </section>
+
+
     </main>
+
   );
 }
