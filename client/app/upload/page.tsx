@@ -1,40 +1,74 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import UploadBox from "@/components/UploadBox";
 
 export default function UploadPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-emerald-50/50 via-white to-emerald-50/30">
+    <main style={{ background: "#0a0a0a", minHeight: "100vh" }}>
       <Navbar />
 
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-4 py-1.5 text-sm font-medium text-emerald-800 border border-emerald-200/50">
-            📚 Knowledge Base
+      <section className="container-dark" style={{ padding: "40px 0" }}>
+        {/* Header */}
+        <div style={{ marginBottom: "40px" }}>
+          <div className="badge-productivity" style={{ marginBottom: "12px" }}>
+            📚 KNOWLEDGE BASE
           </div>
-          <h1 className="mt-4 text-4xl font-bold text-emerald-950 sm:text-5xl">
-            Upload Plant Knowledge
+          
+          <h1 style={{
+            fontSize: "36px",
+            fontWeight: "700",
+            color: "#ffffff",
+            letterSpacing: "-1px",
+            marginTop: "8px"
+          }}>
+            Upload <span style={{ color: "#22c55e" }}>Knowledge</span>
           </h1>
-          <p className="mt-3 mx-auto max-w-2xl text-lg text-emerald-700/80">
-            Upload your plant care documents and turn them into actionable AI insights.
+          
+          <p style={{
+            fontSize: "16px",
+            color: "#94a3b8",
+            maxWidth: "560px",
+            marginTop: "8px",
+            lineHeight: "1.6"
+          }}>
+            Upload your plant care documents and turn them into actionable AI insights. 
             Your assistant will use this knowledge to provide accurate, personalized answers.
           </p>
         </div>
 
-        <div className="mt-12 flex justify-center">
+        {/* Upload Box */}
+        <div style={{ maxWidth: "640px" }}>
           <UploadBox />
         </div>
 
-        {/* Quick Tips */}
-        <div className="mt-12 grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto">
+        {/* Info Cards */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+          gap: "16px",
+          maxWidth: "640px",
+          marginTop: "32px"
+        }}>
           {[
             { icon: "📋", label: "Supported Formats", value: "PDF only" },
             { icon: "📚", label: "Knowledge Types", value: "Guides, FAQs, Sheets" },
-            { icon: "🔍", label: "AI Analysis", value: "Automatic summarization" },
-          ].map((tip) => (
-            <div key={tip.label} className="rounded-xl bg-white/70 p-4 text-center border border-emerald-100/60">
-              <div className="text-2xl">{tip.icon}</div>
-              <div className="mt-1 text-sm font-medium text-emerald-800">{tip.label}</div>
-              <div className="text-xs text-emerald-600">{tip.value}</div>
+            { icon: "🔍", label: "AI Analysis", value: "Automatic summarization" }
+          ].map((item) => (
+            <div key={item.label} style={{
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderRadius: "12px",
+              padding: "16px",
+              textAlign: "center"
+            }}>
+              <div style={{ fontSize: "24px", marginBottom: "4px" }}>{item.icon}</div>
+              <div style={{ fontSize: "12px", fontWeight: "600", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                {item.label}
+              </div>
+              <div style={{ fontSize: "13px", color: "#e2e8f0", marginTop: "2px" }}>
+                {item.value}
+              </div>
             </div>
           ))}
         </div>

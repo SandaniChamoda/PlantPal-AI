@@ -2,52 +2,86 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { Leaf, Upload, MessageCircle, Home } from "lucide-react";
-
-const navItems = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/upload", label: "Knowledge", icon: Upload },
-  { href: "/chat", label: "Chat", icon: MessageCircle },
-];
+import { Leaf } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-emerald-100/60 bg-white/85 px-6 py-3 backdrop-blur-xl shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <Link href="/" className="group flex items-center gap-2">
-          <div className="rounded-xl bg-emerald-600 p-1.5 shadow-lg shadow-emerald-600/20 transition group-hover:shadow-emerald-600/30">
-            <Leaf className="h-5 w-5 text-white" />
+    <nav style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 50,
+      background: "rgba(10,10,10,0.8)",
+      backdropFilter: "blur(20px)",
+      borderBottom: "1px solid rgba(255,255,255,0.06)",
+      padding: "0 24px"
+    }}>
+      <div style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        height: "64px"
+      }}>
+        <Link href="/" style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          textDecoration: "none"
+        }}>
+          <div style={{
+            width: "32px",
+            height: "32px",
+            borderRadius: "8px",
+            background: "#22c55e",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            <Leaf style={{ color: "#0a0a0a", width: "18px", height: "18px" }} />
           </div>
-          <span className="text-xl font-bold text-emerald-900">
-            PlantPal <span className="text-emerald-600">AI</span>
+          <span style={{
+            fontSize: "18px",
+            fontWeight: "700",
+            color: "#ffffff"
+          }}>
+            PlantPal <span style={{ color: "#22c55e" }}>AI</span>
           </span>
         </Link>
 
-        <div className="flex items-center gap-1 rounded-xl bg-emerald-50/50 p-1">
-          {navItems.map((item) => {
+        <div style={{
+          display: "flex",
+          gap: "4px",
+          background: "rgba(255,255,255,0.03)",
+          padding: "4px",
+          borderRadius: "10px"
+        }}>
+          {[
+            { href: "/", label: "Home" },
+            { href: "/upload", label: "Knowledge" },
+            { href: "/chat", label: "Chat" }
+          ].map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
-                  isActive
-                    ? "bg-white text-emerald-900 shadow-sm"
-                    : "text-emerald-700/70 hover:bg-white/50 hover:text-emerald-900"
-                }`}
+                style={{
+                  padding: "6px 16px",
+                  borderRadius: "8px",
+                  fontSize: "13px",
+                  fontWeight: "500",
+                  color: isActive ? "#ffffff" : "#94a3b8",
+                  background: isActive ? "rgba(255,255,255,0.06)" : "transparent",
+                  textDecoration: "none",
+                  transition: "all 0.2s"
+                }}
               >
-                <item.icon className="h-4 w-4" />
-                <span className="hidden sm:inline">{item.label}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 mx-auto h-0.5 w-8 rounded-full bg-emerald-600"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
+                {item.label}
               </Link>
             );
           })}
