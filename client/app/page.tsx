@@ -78,7 +78,7 @@ export default function Home() {
             <div className="header">
               <div className="icon-box">👩</div>
               <div>
-                <div className="label">Amaya - AI Assistant</div>
+                <div className="label">PlantPal AI - AI Assistant</div>
                 <div className="sub">3D Interactive Avatar</div>
               </div>
             </div>
