@@ -513,3 +513,21 @@ body {
 .nav-dark a.active {
   color: #22c55e;
 }
+
+/* Avatar container - ensures proper sizing */
+.avatar-shell-dark {
+  height: 400px;
+  width: 100%;
+  border-radius: 16px;
+  background: radial-gradient(circle at 50% 30%, rgba(34, 197, 94, 0.05), rgba(0, 0, 0, 0.3));
+  border: 1px solid rgba(34, 197, 94, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Make sure the Canvas fills the container */
+.avatar-shell-dark canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
